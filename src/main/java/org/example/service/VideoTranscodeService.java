@@ -17,17 +17,17 @@ public class VideoTranscodeService {
     @Async
     public void transcodeVideo(Long videoID) {
         VideoBean videoBean = videoService.videoDetail(videoID);
-        if (videoBean.getStatus().getStatusCode() == VideoStatus.PENDING.getStatusCode()) {
+        if (videoBean.getStatus().getStatusCode() == VideoStatus.COMPLETED.getStatusCode()) {
+            logger.warn("the video status is " + videoBean.getStatus().getStatusDesc());
+        } else {
             logger.info("start to transcode the video file");
             try {
-                Thread.sleep(3000L);
+                Thread.sleep(30000L);
                 videoService.completeVideo(videoBean);
             } catch (InterruptedException e) {
                 logger.error("transcode video file failed:", e.getMessage());
                 videoService.uncompletedVideo(videoBean);
             }
-        } else {
-            logger.warn("the video status is " + videoBean.getStatus().getStatusDesc());
         }
     }
 }
