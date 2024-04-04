@@ -1,8 +1,8 @@
 #!/bin/bash
-APP_NAME=sfb-dms-server.jar
+APP_NAME=video-management.jar
 
 usage() {
-  echo "usage: sh sfb-dms.sh [start|stop|restart|status]"
+  echo "usage: sh vms.sh [start|stop|restart|status]"
 }
 
 is_exist(){
