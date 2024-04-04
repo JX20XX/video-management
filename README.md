@@ -108,3 +108,109 @@
     - local: clean package -P local -DskipTests -f pom.xml // this is used for local development environment
     - test: clean package -P test -DskipTests -f pom.xml // this is used for test server
     - production: clean package -P production -DskipTests -f pom.xml // this is used for online environment
+
+APIs of the VMS:
+1. Add a new video
+   URL:http://localhost:8080/videos
+   Method: POST
+   Data:
+   ```json
+   {
+      "title":"add with RESTful client",
+      "description": "this is a test video metadata",
+      "uploadTimestamp":"2024-04-03T23:50:40+01:00",
+      "duration":1800,
+      "resolution":"1080P",
+      "format":"AVC/H.264"
+   }
+   ```
+   Response:
+   ```json
+   {
+      "code": 200,
+      "msg": "Saved",
+      "data": null
+   }
+   ```
+2. Get a video list
+   URL: http://localhost:8080/videos
+   Method: GET
+   Response:
+   ```json
+   {
+      "code": 200,
+      "msg": "SUCCESS",
+      "data": [
+         {
+            "id": 1,
+            "title": "add with RESTful client",
+            "description": "this is a test video metadata",
+            "uploadTimestamp": "2024-04-03T23:50:40",
+            "duration": 1800,
+            "resolution": "1080P",
+            "format": "AVC/H.264",
+            "status": "PENDING"
+         }
+      ]
+   }
+   ```
+3. Get a video metadata detail
+   URL: http://localhost:8080/videos/{id}
+   Method: GET
+   Response:
+   ```json
+   {
+     "code": 200,
+     "msg": "SUCCESS",
+     "data": {
+        "id": 2,
+        "title": "add with RESTful client",
+        "description": "this is a test video metadata",
+        "uploadTimestamp": "2024-04-03T23:50:40",
+        "duration": 1800,
+        "resolution": "1080P",
+        "format": "AVC/H.264",
+        "status": "PENDING"
+     }
+   }
+   ```
+4. Update a video status
+   URL: http://localhost:8080/videos/{id}
+   Method: PUT
+   Response:
+   ```json
+   {
+     "code": 200,
+     "msg": "The video is already under processing",
+     "data": {
+        "id": 2,
+        "title": "add with RESTful client",
+        "description": "this is a test video metadata",
+        "uploadTimestamp": "2024-04-03T23:50:40",
+        "duration": 1800,
+        "resolution": "1080P",
+        "format": "AVC/H.264",
+        "status": "PROCESSING"
+     }
+   }
+   ```
+5. Delete a video metadata
+   URL: http://localhost:8080/videos/{id}
+   Method: DELETE
+   Response:
+   ```json
+   {
+     "code": 200,
+     "msg": "The video has been deleted",
+     "data": {
+        "id": 2,
+        "title": "add with RESTful client",
+        "description": "this is a test video metadata",
+        "uploadTimestamp": "2024-04-03T23:50:40",
+        "duration": 1800,
+        "resolution": "1080P",
+        "format": "AVC/H.264",
+        "status": "COMPLETED"
+     }
+   }
+   ```
