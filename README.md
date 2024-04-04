@@ -109,7 +109,7 @@
     - test: clean package -P test -DskipTests -f pom.xml // this is used for test server
     - production: clean package -P production -DskipTests -f pom.xml // this is used for online environment
 
-APIs of the VMS:
+## APIs of the VMS:
 1. Add a new video
    URL:http://localhost:8080/videos
    Method: POST
